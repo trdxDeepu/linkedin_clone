@@ -1,0 +1,15 @@
+.login-btn {
+  // width: 100px;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 3px;
+  background: #ccc;
+  font-size: 16px;
+  color: #333;
+  :hover {
+    transform: translateY(-0.33em);
+  }
+  :active {
+    transform: translateY(0);
+  }
+}
