@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RegisterApi,LoginApi } from "../api/AuthApi";
 import "../sass/LoginComponent.scss";
+import Logo from '../assets/linkedin-logo.png'
 
 const LoginComponent = () => {
   const [data, setData] = useState({
@@ -29,6 +30,7 @@ try {
   return (
     <>
       <h1>Login Component</h1>
+      <img src={Logo} alt="logo" className="linkedin-logo" />
       <input
         type="text"
         placeholder="Enter email"
