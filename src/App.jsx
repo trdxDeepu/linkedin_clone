@@ -1,9 +1,11 @@
 import "./App.css";
+import Approuter from "./Routes/Approuter";
 
 function App() {
   return (
     <div className="App">
-      <h1>Linkedin CLone</h1>
+     <Approuter/>
+
     </div>
   );
 }
