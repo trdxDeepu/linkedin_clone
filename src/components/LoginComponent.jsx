@@ -28,8 +28,8 @@ try {
 
 }
   return (
-    <>
-      <h1>Login Component</h1>
+    <div className="login-wrapper">
+      <h1 className="heading">Sign in</h1>
       <img src={Logo} alt="logo" className="linkedin-logo" />
       <input
         type="text"
@@ -50,7 +50,7 @@ try {
       <button onClick={login} className="login-btn">
         Login in linkedin
       </button>
-    </>
+    </div>
   );
 };
 
