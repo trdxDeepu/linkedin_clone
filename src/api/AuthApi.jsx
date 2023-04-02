@@ -26,6 +26,7 @@ export const  googleApi = () => {
    let googleProvider = new GoogleAuthProvider()
    let res = signInWithPopup(auth,googleProvider) 
     return res;
+   
   } catch (error) {
     return error;
    }
