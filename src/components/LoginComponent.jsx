@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { RegisterApi, LoginApi,googleApi } from "../api/AuthApi";
+import { RegisterApi, LoginApi, googleApi } from "../api/AuthApi";
 import "../sass/LoginComponent.scss";
 import Logo from "../assets/linkedin-logo.png";
 import GoogleButton from "react-google-button";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+// import { navigate } from "../helper/useNaviagte";
 
 const LoginComponent = () => {
+
+let navigate = useNavigate();
+  
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -30,11 +35,9 @@ const LoginComponent = () => {
   };
 
   const googleSign = async () => {
-
-   let response = googleApi();
-   console.log(response)
-
-  }
+    let response = googleApi();
+    console.log(response);
+  };
 
   return (
     <div className="login-wrapper">
@@ -72,12 +75,12 @@ const LoginComponent = () => {
       </div>
 
       <div className="google-btn-container">
-        <GoogleButton
-          className="google-btn"
-          onClick={googleSign}
-        />
+        <GoogleButton className="google-btn" onClick={googleSign} />
         <p className="go-to-signup">
-          New to Linkedin? <span className="join-now">Join now</span>
+          New to Linkedin?{" "}
+          <span className="join-now" onClick={() => navigate("/register")}>
+            Join now
+          </span>
         </p>
       </div>
     </div>
