@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import HomeComponent from '../components/HomeComponent'
+import { onAuthStateChanged } from 'firebase/auth'
+import {auth} from '../Firebase'
 
 const Home = () => {
-  return (
-   <h1>Home</h1>
-  )
+
+  useEffect(()=>{
+    onAuthStateChanged(auth,(res)=>{
+      if(!res?.accessToken){
+        navigate('/login')
+      }
+    })
+  })
+
+  return <HomeComponent/>
 }
 
 export default Home
