@@ -4,6 +4,9 @@ import RegisterComponent from '../components/RegiserComponent'
 const Register = () => {
   return (
    <RegisterComponent/>
+   
+   
+    
   )
 }
 
