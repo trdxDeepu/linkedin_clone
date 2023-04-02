@@ -1,36 +1,44 @@
-.login-wrapper{
-  .heading{
+body{
+  margin: 0;
+  padding: 0;
+
+}
+
+.login-wrapper {
+  .heading {
     margin-left: 200px;
     font-family: system-ui;
     font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+  }
+  .sub-heading{
+    margin-left: 200px;
+    font-family: system-ui;
+    font-weight: 500;
     color: rgba(0,0,0,0.9);
-
-
+    margin-top: -20px   ;
   }
 }
 
 .linkedin-logo {
   width: 80px;
-  height: 80px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-
-
+  // position: absolute;
+  // top: 20px;
+  // left: 20px;
 }
 
-.login-btn {
-  // width: 100px;
-  padding: 10px 20px;
-  display: inline-block;
-  border-radius: 3px;
-  background: #ccc;
-  font-size: 16px;
-  color: #333;
-  :hover {
-    transform: translateY(-0.33em);
-  }
-  :active {
-    transform: translateY(0);
-  }
-}
+// .login-btn {
+//   // width: 100px;
+//   padding: 10px 20px;
+//   display: inline-block;
+//   border-radius: 3px;
+//   background: #ccc;
+//   font-size: 16px;
+//   color: #333;
+//   :hover {
+//     transform: translateY(-0.33em);
+//   }
+//   :active {
+//     transform: translateY(0);
+//   }
+// }
