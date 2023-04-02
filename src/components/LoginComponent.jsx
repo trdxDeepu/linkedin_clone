@@ -26,29 +26,34 @@ const LoginComponent = () => {
   return (
     <div className="login-wrapper">
       <img src={Logo} alt="logo" className="linkedin-logo" />
-      <h1 className="heading">Sign in</h1>
-      <p className="sub-heading">Stay up to date on your professional world</p>
+      <div className="login-wrapper-inner">
+        <h1 className="heading">Sign in</h1>
+        <p className="sub-heading">
+          Stay up to date on your professional world
+        </p>
 
-      <div className="auth-input">
-        <input
-          type="text"
-          placeholder="Enter email"
-          className="common-input"
-          value={email}
-          id="email"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Enter password"
-          className="common-input"
-          value={password}
-          id="password"
-          onChange={handleChange}
-        />
-        <button onClick={login} className="login-btn">
-          Login in linkedin
-        </button>
+        <div className="auth-input">
+          <input
+            type="email"
+            placeholder="Email or Phone"
+            className="common-input"
+            value={email}
+            id="email"
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="common-input"
+            value={password}
+            id="password"
+            onChange={handleChange}
+          />
+          <button onClick={login} className="login-btn">
+            Sign in
+          </button>
+        </div>
+        <hr  className="hr-text" data-content="or"/>
       </div>
     </div>
   );
