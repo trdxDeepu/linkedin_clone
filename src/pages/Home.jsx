@@ -1,19 +1,25 @@
-import React, { useEffect } from 'react'
-import HomeComponent from '../components/HomeComponent'
-import { onAuthStateChanged } from 'firebase/auth'
-import {auth} from '../Firebase'
+import React, { useEffect, useState } from "react";
+import HomeComponent from "../components/HomeComponent";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../Firebase";
+import Loader from "../components/Loader";
 
 const Home = () => {
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    onAuthStateChanged(auth,(res)=>{
-      if(!res?.accessToken){
-        navigate('/login')
+  useEffect(() => {
+    onAuthStateChanged(auth, (res) => {
+      if (!res?.accessToken) {
+        navigate("/login");
+      
       }
-    })
-  })
+      else{
+        setLoading(false)
+      }
+    });
+  });
 
-  return <HomeComponent/>
-}
+  return loading ? <Loader /> : <HomeComponent />;
+};
 
-export default Home
+export default Home;

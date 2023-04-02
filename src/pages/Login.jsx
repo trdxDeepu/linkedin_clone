@@ -1,24 +1,23 @@
-import React,{useEffect} from 'react'
-import LoginComponent from '../components/LoginComponent'
-import { onAuthStateChanged } from 'firebase/auth'
-import {auth} from '../Firebase'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import LoginComponent from "../components/LoginComponent";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../Firebase";
+import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 const Login = () => {
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  useEffect(() => {
+    onAuthStateChanged(auth, (res) => {
+      if (res?.accessToken) {
+        navigate("/");
+      } else {
+        setLoading(false);
+      }
+    });
+  });
+  return loading ? <Loader /> : <LoginComponent />;
+};
 
-  useEffect(()=>{
-    onAuthStateChanged(auth,(res)=>{
-    if(res?.accessToken){
-      navigate('/')
-    }
-    })
-  })
-  return (
-    <div>
-        <LoginComponent/>
-    </div>
-  )
-}
-
-export default Login
+export default Login;
