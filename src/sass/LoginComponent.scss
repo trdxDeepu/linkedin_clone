@@ -5,10 +5,11 @@ $linkedinBlue3:#0a5d89;
 body {
   margin: 0;
   padding: 0;
+  
 }
 .linkedin-logo {
   width: 80px;
-}
+} 
 
 .login-wrapper {
   background-color: white;
@@ -33,7 +34,7 @@ body {
   flex-direction: column;
   gap: 10px;
   width: 300px;
-
+ 
   .common-input {
     height: 30px;
     padding: 10px;
@@ -45,6 +46,7 @@ body {
     border: 1px solid #212121;
     border-radius: 4px;
     margin: 10 0px;
+   
   }
   .common-input:focus {
     outline: 1px solid $linkedinBlue1;
@@ -106,5 +108,14 @@ body {
     // this is really the only tricky part, you need to specify the background color of the container element...
     color: #818078;
     background-color:#fcfcfa;
+  }
+}
+
+
+.google-btn-container{
+  margin-left: 200px;
+  .google-btn{
+    width: 300px;
+
   }
 }

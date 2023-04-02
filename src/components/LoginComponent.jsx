@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RegisterApi, LoginApi } from "../api/AuthApi";
 import "../sass/LoginComponent.scss";
 import Logo from "../assets/linkedin-logo.png";
+import GoogleButton from "react-google-button";
 
 const LoginComponent = () => {
   const [data, setData] = useState({
@@ -53,7 +54,15 @@ const LoginComponent = () => {
             Sign in
           </button>
         </div>
-        <hr  className="hr-text" data-content="or"/>
+        <hr className="hr-text" data-content="or" />
+        <div className="google-btn-container">
+          <GoogleButton
+            className="google-btn"
+            onClick={() => {
+              console.log("Google button clicked");
+            }}
+          />
+        </div>
       </div>
     </div>
   );
