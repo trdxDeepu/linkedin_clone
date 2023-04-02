@@ -28,15 +28,22 @@ let navigate = useNavigate();
   const login = async () => {
     try {
       await LoginApi(data.email, data.password);
-      toast.success("done sign");
+      toast.success("Signed in sucessfully");
+      navigate('/')
     } catch (error) {
       toast.error("error");
     }
   };
 
-  const googleSign = async () => {
-    let response = googleApi();
-    console.log(response);
+  const googleSign = () => {
+    try{
+        googleApi()
+        // toast.success("Signed in sucessfully")
+        // navigate('/')
+    }
+    catch(err){
+      toast.error("Can't signed in")
+    }
   };
 
   return (
