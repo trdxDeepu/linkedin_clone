@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { RegisterApi, LoginApi } from "../api/AuthApi";
+import { RegisterApi, LoginApi,googleApi } from "../api/AuthApi";
 import "../sass/LoginComponent.scss";
 import Logo from "../assets/linkedin-logo.png";
 import GoogleButton from "react-google-button";
+import { toast } from "react-toastify";
 
 const LoginComponent = () => {
   const [data, setData] = useState({
@@ -22,8 +23,19 @@ const LoginComponent = () => {
   const login = async () => {
     try {
       await LoginApi(data.email, data.password);
-    } catch (error) {}
+      toast.success("done sign");
+    } catch (error) {
+      toast.error("error");
+    }
   };
+
+  const googleSign = async () => {
+
+   let response = googleApi();
+   console.log(response)
+
+  }
+
   return (
     <div className="login-wrapper">
       <img src={Logo} alt="logo" className="linkedin-logo" />
@@ -50,19 +62,23 @@ const LoginComponent = () => {
             id="password"
             onChange={handleChange}
           />
-          <button onClick={login} className="login-btn">
-            Sign in
-          </button>
         </div>
+        <button onClick={login} className="login-btn">
+          Sign in
+        </button>
+      </div>
+      <div className="container">
         <hr className="hr-text" data-content="or" />
-        <div className="google-btn-container">
-          <GoogleButton
-            className="google-btn"
-            onClick={() => {
-              console.log("Google button clicked");
-            }}
-          />
-        </div>
+      </div>
+
+      <div className="google-btn-container">
+        <GoogleButton
+          className="google-btn"
+          onClick={googleSign}
+        />
+        <p className="go-to-signup">
+          New to Linkedin? <span className="join-now">Join now</span>
+        </p>
       </div>
     </div>
   );

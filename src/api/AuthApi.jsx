@@ -1,11 +1,12 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase";
+import { toast } from "react-toastify";
 export const LoginApi = (email, password) => {
   try {
     let response = signInWithEmailAndPassword(auth, email, password);
-    console.log(response)
+  return response;
   } catch (error) {
-    alert(error, "Not solved");
+      return error;
   }
 }
 
@@ -19,3 +20,15 @@ export const  RegisterApi = (email,password) => {
     }
 
 }
+
+export const  googleApi = () => {
+   try {
+   let googleProvider = new GoogleAuthProvider()
+   let res = signInWithPopup(auth,googleProvider) 
+    return res;
+  } catch (error) {
+    return error;
+   }
+}
+
+
