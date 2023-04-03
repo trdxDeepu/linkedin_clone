@@ -14,11 +14,21 @@
   align-items: center;
   justify-content: space-between;
   margin-left: 30px;
-  width: 15%;
+  width: 55%;
 
 }
-.react-icons
-{
+.react-icons{
+    color: #787878;
     cursor: pointer;
-    
+}
+.react-icons:hover{
+    color: black;
+}
+
+.user-logo
+{
+    width: 40px;
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
 }
