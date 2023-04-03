@@ -3,8 +3,11 @@ import Home from '../pages/Home'
 
 const HomeLayout = () => {
   return (
-   <Home/>
-  )
+    <div>
+       <Home/>
+    </div>
+  
+  ) 
 }
 
 export default HomeLayout
