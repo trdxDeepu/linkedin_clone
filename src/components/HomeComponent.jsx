@@ -1,8 +1,9 @@
 import React from 'react'
+import Topbar from '../common/topbar/Topbar'
 
 const HomeComponent = () => {
   return (
-    <div>HomeComponent</div>
+    <Topbar/>
   )
 }
 
