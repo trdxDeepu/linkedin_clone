@@ -1,9 +1,14 @@
 import React from 'react'
-import Topbar from '../common/topbar/Topbar'
+import Topbar from '../components/common/topbar/Topbar'
+import Postupdate from '../components/common/PostUpdate/Postupdate'
 
 const HomeComponent = () => {
   return (
+    <>
     <Topbar/>
+    <Postupdate/>
+    </>
+    
   )
 }
 

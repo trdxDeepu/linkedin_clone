@@ -3,7 +3,7 @@ import LoginComponent from "../components/LoginComponent";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Firebase";
 import { useNavigate } from "react-router-dom";
-import Loader from "../common/Loader/Loader";
+import Loader from "../components/common/Loader/Loader";
 const Login = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
