@@ -5,7 +5,7 @@ import Postupdate from '../components/common/PostUpdate/Postupdate'
 const HomeComponent = () => {
   return (
     <>
-    <Topbar/>
+   
     <Postupdate/>
     </>
     
