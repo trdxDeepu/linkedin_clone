@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import HomeComponent from "../components/HomeComponent";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Firebase";
-import Loader from "../components/Loader";
+import Loader from "../common/Loader";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
