@@ -5,6 +5,9 @@ import PostModal from "../Modal/PostModal";
 const Postupdate = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
+  const sendStatus = () => {
+
+  }
 
   return (
     <div className="post-status-main">
@@ -18,6 +21,7 @@ const Postupdate = () => {
         setStatus={setStatus}
         modalopen={modalOpen}
         setModalOpen={setModalOpen}
+        sendStatus={sendStatus}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Modal } from "antd";
 import "./postmodal.scss";
 
-const PostModal = ({ modalopen, setModalOpen, setStatus, status }) => {
+const PostModal = ({ modalopen, setModalOpen, setStatus, status, sendStatus }) => {
   return (
     <>
       {/* <Button type="primary" onClick={() => setModalOpen(true)}>
@@ -19,6 +19,7 @@ const PostModal = ({ modalopen, setModalOpen, setStatus, status }) => {
             key="submit"
             type="primary"
             disabled={status.length > 0 ? false : true}
+            onClick={sendStatus}
           >
             Post
           </Button>,
