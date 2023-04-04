@@ -2,6 +2,9 @@ import React, { useState,useMemo } from "react";
 import "./postupdate.scss";
 import { PostStatus,getStatus } from "../../../api/FirestoreApi";
 import PostModal from "../Modal/PostModal";
+import PostCard from "../PostCard/PostCard";
+import { getCurrentTimeStamp} from "../../../helper/useMoment";
+
 
 const Postupdate = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -10,13 +13,18 @@ const Postupdate = () => {
 
 
   const sendStatus = async () => {
-          await PostStatus(status)
+    let object = {
+      status: status,
+      timeStamp: getCurrentTimeStamp("LLL")
+    };
+          await PostStatus(object)
           await setModalOpen(false)
           await setStatus("")
   }
 
   useMemo(()=>{
     getStatus(setAllStatus) 
+
   },[])
 
 console.log(allStatus)
@@ -38,9 +46,7 @@ console.log(allStatus)
       <div>
       {allStatus.map((post) => {
         return(
-          <div key={post.id}>
-          <p>{post.status}</p>
-          </div>
+         <PostCard key={post.id} post={post}/>
         )
       })}
       </div>

@@ -2,13 +2,12 @@ import { toast } from "react-toastify";
 import { db, auth } from "../Firebase";
 import { addDoc, collection, onSnapshot} from "firebase/firestore";
 
+
 const docRef = collection(db, "posts");
 
-export const PostStatus = (status) => {
-  let obj = {
-    status: status,
-  };
-  addDoc(docRef, obj)
+export const PostStatus = (object) => {
+ 
+  addDoc(docRef, object)
     .then(() => {
       toast.success("Post Updated ");
     })
