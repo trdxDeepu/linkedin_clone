@@ -1,13 +1,17 @@
 import { toast } from "react-toastify";
 import { db, auth } from "../Firebase";
-import { addDoc, collection, onSnapshot} from "firebase/firestore";
-
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
 const docRef = collection(db, "posts");
-const useRef = collection(db,"users")
+const useRef = collection(db, "users");
 
 export const PostStatus = (object) => {
- 
   addDoc(docRef, object)
     .then(() => {
       toast.success("Post Updated ");
@@ -18,35 +22,34 @@ export const PostStatus = (object) => {
 };
 
 export const getStatus = (setAllStatus) => {
-
-  onSnapshot(docRef,(response)=> {
-   setAllStatus(response.docs.map((doc)=>{
-        return{...doc.data(),id:doc.id};
-    }))
-  })
-
-}
+  const q = query(docRef, orderBy("timeStamp"));
+  onSnapshot(q, (response) => {
+    setAllStatus(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    );
+  });
+};
 
 export const postUserData = (object) => {
-
-  addDoc(useRef,object ).then(()=>{})
-  .catch((error)=>{
-    console.log(error)
-  })
-
-}
+  addDoc(useRef, object)
+    .then(() => {})
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export const getCurrentUser = (setCurrentUser) => {
-
-  let currEmail = localStorage.getItem('userEmail')
-  onSnapshot(useRef,(response)=> {
-    setCurrentUser(response.docs.map((doc)=>{
-         return{...doc.data(),userID:doc.id};
-     }).filter((item)=>{{
-      return item.email === currEmail;
-         }})[0]
-     
-     )
-   })
-
-}
+  onSnapshot(useRef, (response) => {
+    setCurrentUser(
+      response.docs
+        .map((docs) => {
+          return { ...docs.data(), id: docs.id };
+        })
+        .filter((item) => {
+          return item.email === localStorage.getItem("userEmail");
+        })[0]
+    );
+  });
+};

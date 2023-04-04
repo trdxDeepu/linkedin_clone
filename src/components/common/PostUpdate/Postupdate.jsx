@@ -6,9 +6,7 @@ import PostCard from "../PostCard/PostCard";
 import { getCurrentTimeStamp } from "../../../helper/useMoment";
 import { getUniqueId } from "../../../helper/getUniqueId";
 
-const Postupdate = ({currentUser}) => {
-  console.log(getUniqueId() )
-  const userEmail = localStorage.getItem("userEmail")
+const Postupdate = ({ currentUser }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatus, setAllStatus] = useState([]);
@@ -17,11 +15,12 @@ const Postupdate = ({currentUser}) => {
     let object = {
       status: status,
       timeStamp: getCurrentTimeStamp("LLL"),
-      userEmail:userEmail,
-      userName:currentUser.name,
-      postID:getUniqueId()
+      userEmail: currentUser.email,
+      userName: currentUser.name,
+      postID: getUniqueId(),
+    
     };
-    await PostStatus(object); 
+    await PostStatus(object);
     await setModalOpen(false);
     await setStatus("");
   };
@@ -48,7 +47,11 @@ const Postupdate = ({currentUser}) => {
       />
       <div>
         {allStatus.map((post) => {
-          return <PostCard  post={post} />;
+          return(
+            <div key={post.id}>
+              <PostCard posts={post} />
+            </div>
+            )
         })}
       </div>
     </div>

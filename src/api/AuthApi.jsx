@@ -32,7 +32,7 @@ export const  googleApi = () => {
    }
 }
 
-export const OnLogOut = () => {
+export const onLogout = () => {
   try {
     signOut(auth);
   } catch (error)   

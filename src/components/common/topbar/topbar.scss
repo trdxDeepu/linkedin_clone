@@ -17,6 +17,12 @@
   width: 55%;
 
 }
+.popup-position {
+  position: absolute;
+  right: 10px;
+  top: 65px;
+  z-index: 99;
+}
 .react-icons{
     color: #787878;
     cursor: pointer;

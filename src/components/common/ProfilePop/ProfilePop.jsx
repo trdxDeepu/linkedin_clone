@@ -1,16 +1,31 @@
-import React from 'react'
-import './profilepop.scss'
-import { OnLogOut } from '../../../api/AuthApi'
+import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { onLogout } from "../../../api/AuthApi";
+import { getCurrentUser } from "../../../api/FirestoreApi";
+import Button from "../Button/Button";
+import "./profilepop.scss";
 
-const ProfilePop = () => {
+export default function ProfilePopup() {
+  let navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState({});
+  useMemo(() => {
+    getCurrentUser(setCurrentUser);
+  }, []);
   return (
     <div className="popup-card">
-        <div className="popup-option">
-            <li className="popuo-option"
-            onClick={OnLogOut}>Log Out</li>
-        </div>
+      <p className="name">{currentUser?.name}</p>
+      <p className="headline">{currentUser?.headline}</p>
+      <Button
+        title="View Profile"
+        onClick={() =>
+          navigate("/profile", {
+            state: {
+              id: currentUser?.id,
+            },
+          })
+        }
+      />
+      <Button title="Log out" onClick={onLogout} />
     </div>
-  )
+  );
 }
-
-export default ProfilePop
