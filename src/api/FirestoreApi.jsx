@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 
 const docRef = collection(db, "posts");
-const useRef = collection(db, "users");
+const useRef = collection(db, "users",);
 
 export const PostStatus = (object) => {
   addDoc(docRef, object)
@@ -32,17 +32,17 @@ export const getStatus = (setAllStatus) => {
   });
 };
 
-export const postUserData = (object) => {
+export const postUserData =(object) => {
   addDoc(useRef, object)
-    .then(() => {})
-    .catch((error) => {
-      console.log(error);
-    });
+  .then(() => {})
+  .catch((err) => {
+    console.log(err);
+  });
 };
 
 export const getCurrentUser = (setCurrentUser) => {
   onSnapshot(useRef, (response) => {
-    setCurrentUser(
+    console.log(
       response.docs
         .map((docs) => {
           return { ...docs.data(), id: docs.id };

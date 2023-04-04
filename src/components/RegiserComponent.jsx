@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 // import { navigate } from "../helper/useNaviagte";
 import { postUserData } from "../api/FirestoreApi";
+import { getUniqueId } from "../helper/getUniqueId";
 
 const RegisterComponent = () => {
   let navigate = useNavigate();
@@ -30,11 +31,16 @@ const RegisterComponent = () => {
     try {
       let res = await RegisterApi(data.email, data.password);
       toast.success("Account Created");
-      postUserData({ name: data.name, email: data.email });
-      localStorage.setItem("userEmail", res.user.email);
-      navigate("/");
+      postUserData({
+         userID:getUniqueId(),
+         name: data.name, 
+         email: data.email
+         });
+         navigate("/");
+         localStorage.setItem("userEmail", res.user.email);
       console.log(res);
     } catch (error) {
+      console.log(error)
       toast.error("Cannot create your account");
     }
   };

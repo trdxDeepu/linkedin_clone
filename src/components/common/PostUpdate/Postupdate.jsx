@@ -29,7 +29,7 @@ const Postupdate = ({ currentUser }) => {
     getStatus(setAllStatus);
   }, []);
 
-  console.log(allStatus);
+  // console.log(allStatus);
 
   return (
     <div className="post-status-main">

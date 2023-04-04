@@ -11,6 +11,9 @@ const HomeLayout = () => {
   useMemo(()=>{
     getCurrentUser(setCurrentUser)
   },[])
+
+  console.log(currentUser)
+
   return (
     <div>
       <Topbar />
