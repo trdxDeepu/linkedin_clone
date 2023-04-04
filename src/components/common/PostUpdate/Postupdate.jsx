@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./postupdate.scss";
+import { PostStatus } from "../../../api/FirestoreApi";
 import PostModal from "../Modal/PostModal";
 
 const Postupdate = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
-  const sendStatus = () => {
-
+  const sendStatus = async () => {
+          await PostStatus(status)
+          await setModalOpen(false)
+          await setStatus("")
   }
 
   return (
