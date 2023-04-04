@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import HomeLayout from "../layout/HomeLayout";
 import Register from "../pages/Register";
-import Profile from "../pages/Profile";
+import ProfileLayout from "../layout/ProfileLayout";
 
 const Approuter = () => {
   return (
@@ -12,7 +12,7 @@ const Approuter = () => {
         <Route path="/" element={<HomeLayout />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfileLayout />} />
       </Routes>
     </BrowserRouter>
   );

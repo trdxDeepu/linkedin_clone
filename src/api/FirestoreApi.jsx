@@ -42,7 +42,7 @@ export const postUserData =(object) => {
 
 export const getCurrentUser = (setCurrentUser) => {
   onSnapshot(useRef, (response) => {
-    console.log(
+    setCurrentUser(
       response.docs
         .map((docs) => {
           return { ...docs.data(), id: docs.id };
