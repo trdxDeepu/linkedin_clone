@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../Firebase";
 
 export const LoginApi = (email, password) => {
@@ -30,6 +30,15 @@ export const  googleApi = () => {
   } catch (error) {
     return error;
    }
+}
+
+export const OnLogOut = () => {
+  try {
+    signOut(auth);
+  } catch (error)   
+  {
+    console.log(error)  
+  }
 }
 
 

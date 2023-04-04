@@ -4,6 +4,7 @@ import { addDoc, collection, onSnapshot} from "firebase/firestore";
 
 
 const docRef = collection(db, "posts");
+const useRef = collection(db,"users")
 
 export const PostStatus = (object) => {
  
@@ -22,6 +23,15 @@ export const getStatus = (setAllStatus) => {
    setAllStatus(response.docs.map((doc)=>{
         return{...doc.data(),id:doc.id};
     }))
+  })
+
+}
+
+export const postUserData = (object) => {
+
+  addDoc(useRef,object ).then(()=>{})
+  .catch((error)=>{
+    console.log(error)
   })
 
 }

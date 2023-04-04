@@ -6,6 +6,7 @@ import GoogleButton from "react-google-button";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 // import { navigate } from "../helper/useNaviagte";
+import { postUserData } from "../api/FirestoreApi";
 
 const RegisterComponent = () => {
   let navigate = useNavigate();
@@ -13,9 +14,10 @@ const RegisterComponent = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
+    name: "",
   });
 
-  const { email, password } = data;
+  const { email, password, name } = data;
 
   const handleChange = (e) => {
     setData({
@@ -24,27 +26,26 @@ const RegisterComponent = () => {
     });
   };
 
-  const login = async() => {
+  const register = async () => {
     try {
-    let res = await RegisterApi(data.email, data.password);
+      let res = await RegisterApi(data.email, data.password);
       toast.success("Account Created");
-      localStorage.setItem('userEmail',res.user.email)
+      postUserData({ name: data.name, email: data.email });
+      localStorage.setItem("userEmail", res.user.email);
       navigate("/");
-      console.log(res)
+      console.log(res);
     } catch (error) {
       toast.error("Cannot create your account");
     }
   };
 
- 
   const googleSign = () => {
-    try{
-        googleApi()
-        // toast.success("Signed in sucessfully")
-        // navigate('/')
-    }
-    catch(err){
-      toast.error("Can't signed in")
+    try {
+      googleApi();
+      // toast.success("Signed in sucessfully")
+      // navigate('/')
+    } catch (err) {
+      toast.error("Can't signed in");
     }
   };
 
@@ -55,6 +56,15 @@ const RegisterComponent = () => {
         <h1 className="heading">Make the most of your professional life</h1>
 
         <div className="auth-input">
+          <input
+            type="text"
+            placeholder="Your name"
+            className="common-input"
+            value={name}
+            id="name"
+            onChange={handleChange}
+          />
+
           <input
             type="email"
             placeholder="Email or Phone"
@@ -72,7 +82,7 @@ const RegisterComponent = () => {
             onChange={handleChange}
           />
         </div>
-        <button onClick={login} className="login-btn">
+        <button onClick={register} className="login-btn">
           Agree & join
         </button>
       </div>
