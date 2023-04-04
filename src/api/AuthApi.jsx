@@ -1,6 +1,6 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase";
-import { toast } from "react-toastify";
+
 export const LoginApi = (email, password) => {
   try {
     let response = signInWithEmailAndPassword(auth, email, password);
@@ -14,7 +14,7 @@ export const  RegisterApi = (email,password) => {
 
     try {
     let user = createUserWithEmailAndPassword(auth,email,password)
-   console.log(user.email)
+    return user; 
     } catch (error) {
         console.log(error)
     }

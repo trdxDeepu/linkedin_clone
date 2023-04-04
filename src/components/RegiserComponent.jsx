@@ -26,9 +26,11 @@ const RegisterComponent = () => {
 
   const login = async() => {
     try {
-      await RegisterApi(data.email, data.password);
+    let res = await RegisterApi(data.email, data.password);
       toast.success("Account Created");
+      localStorage.setItem('userEmail',res.user.email)
       navigate("/");
+      console.log(res)
     } catch (error) {
       toast.error("Cannot create your account");
     }

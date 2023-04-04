@@ -27,9 +27,11 @@ let navigate = useNavigate();
 
   const login = async () => {
     try {
-      await LoginApi(data.email, data.password);
+     let res = await LoginApi(data.email, data.password);
       toast.success("Signed in sucessfully");
+      localStorage.setItem('userEmail',res.user.email)
       navigate('/')
+      console.log(res) 
     } catch (error) {
       toast.error("error");
     }

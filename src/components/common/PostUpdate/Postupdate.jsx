@@ -1,33 +1,32 @@
-import React, { useState,useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import "./postupdate.scss";
-import { PostStatus,getStatus } from "../../../api/FirestoreApi";
+import { PostStatus, getStatus } from "../../../api/FirestoreApi";
 import PostModal from "../Modal/PostModal";
 import PostCard from "../PostCard/PostCard";
-import { getCurrentTimeStamp} from "../../../helper/useMoment";
-
+import { getCurrentTimeStamp } from "../../../helper/useMoment";
 
 const Postupdate = () => {
+  const userEmail = localStorage.getItem("userEmail")
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
-  const [allStatus, setAllStatus] = useState([])
-
+  const [allStatus, setAllStatus] = useState([]);
 
   const sendStatus = async () => {
     let object = {
       status: status,
-      timeStamp: getCurrentTimeStamp("LLL")
+      timeStamp: getCurrentTimeStamp("LLL"),
+      userEmail:userEmail
     };
-          await PostStatus(object)
-          await setModalOpen(false)
-          await setStatus("")
-  }
+    await PostStatus(object); 
+    await setModalOpen(false);
+    await setStatus("");
+  };
 
-  useMemo(()=>{
-    getStatus(setAllStatus) 
+  useMemo(() => {
+    getStatus(setAllStatus);
+  }, []);
 
-  },[])
-
-console.log(allStatus)
+  console.log(allStatus);
 
   return (
     <div className="post-status-main">
@@ -44,13 +43,10 @@ console.log(allStatus)
         sendStatus={sendStatus}
       />
       <div>
-      {allStatus.map((post) => {
-        return(
-         <PostCard key={post.id} post={post}/>
-        )
-      })}
+        {allStatus.map((post) => {
+          return <PostCard  post={post} />;
+        })}
       </div>
-      
     </div>
   );
 };
