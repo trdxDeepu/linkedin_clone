@@ -25,8 +25,18 @@ const LikeButton = ({ userId, postId }) => {
 
   return (
     <div className="like-container" onClick={handleLike}>
-      {liked ? <AiFillHeart size={30} /> : <AiOutlineHeart size={30} />}
-      <p>{liked ? "Liked" : "Like"}</p>
+      <p>{likesCount} people like the post</p>
+   <div className="hr-line">
+    <hr />
+   </div>
+      <div className="likes-inner">
+        {liked ? (
+          <AiFillHeart size={30} color="#0a66c2" />
+        ) : (
+          <AiOutlineHeart size={30} />
+        )}
+        <p className={liked?'blue':'black'}>Like</p>
+      </div>
     </div>
   );
 };
