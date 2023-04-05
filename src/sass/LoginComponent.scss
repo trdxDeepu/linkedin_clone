@@ -38,26 +38,7 @@ body {
   gap: 10px;
   width: 300px;
 
-  .common-input {
-    height: 30px;
-    padding: 10px;
-    background-color: white;
-    color: #212121;
-    outline: none;
-    font-family: system-ui;
-    font-size: 16px;
-    border: 1px solid #212121;
-    border-radius: 4px;
-    margin: 10 0px;
-  }
-  .common-input:focus {
-    outline: 1px solid $linkedinBlue1;
-  }
-  ::placeholder {
-    font-family: system-ui;
-    font-size: 16px;
-    margin-top: 5px;
-  }
+ 
 }
 
 .login-btn {

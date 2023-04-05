@@ -1,17 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url('./sass/Loader.scss');
 
+$linkedinBlue1: #0072b1;
+$linkedinBlue2: #0073b1;
+$linkedinBlue3: #0a5d89;
+
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
   color: #212121;
-  background-color: rgba(255, 255, 255, 0.87);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  background-color: rgba(224, 224, 224);
+}
+.common-input {
+  height: 20px;
+  padding: 10px;
+  background-color: white;
+  outline: none;
+  border: 1px solid #212121;
+  color: #212121;
+  border-radius: 3px;
+  font-family: system-ui;
+  font-size: 16px;
+}
+.common-input:focus {
+  outline: 1px solid $linkedinBlue1;
+}
+::placeholder {
+  font-family: system-ui;
+  font-size: 16px;
 }
 
