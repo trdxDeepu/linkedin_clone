@@ -12,7 +12,7 @@ const PostCard = ({ posts,id }) => {
  
   useMemo(()=>{
     getCurrentUser(setCurrentUser)
-  })
+  },[])
 
 
 

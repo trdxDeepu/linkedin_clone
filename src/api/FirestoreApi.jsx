@@ -9,13 +9,13 @@ import {
   updateDoc,
   doc,
   where,
-  setDoc
+  setDoc,
+  deleteDoc
 } from "firebase/firestore";
 
 const docRef = collection(db, "posts");
 const useRef = collection(db, "users");
-const likeRef = collection(db,"likes")
-
+const likeRef = collection(db, "likes");
 
 // console.log(useRef)
 
@@ -40,7 +40,6 @@ export const getStatus = (setAllStatus) => {
   });
 };
 
-
 export const getSingleStatus = (setAllStatus, id) => {
   const singlePostQuery = query(docRef, where("userID", "==", id));
   onSnapshot(singlePostQuery, (response) => {
@@ -62,7 +61,6 @@ export const getSingleUser = (setCurrentUser, email) => {
     );
   });
 };
-
 
 export const postUserData = (object) => {
   addDoc(useRef, object)
@@ -86,8 +84,8 @@ export const getCurrentUser = (setCurrentUser) => {
   });
 };
 
-export const editProfile  = async (userID, payload) => {
-  const userToEdit = doc(useRef,userID);
+export const editProfile = async (userID, payload) => {
+  const userToEdit = doc(useRef, userID);
 
   try {
     await updateDoc(userToEdit, payload);
@@ -98,25 +96,33 @@ export const editProfile  = async (userID, payload) => {
   }
 };
 
-
-export const likePost = (userId,postId) => {
+export const likePost = (userId, postId, liked) => {
   try {
-    
-    let doToLike  = doc(likeRef, `${userId}_${postId}`)
-    console.log(userId)
-    console.log(postId)
-    setDoc(doToLike,{userId,postId});
-   
-
-  } catch (error) {
-    console.log(error)
+    let docToLike = doc(likeRef, `${userId}_${postId}`);
+    if (liked) {
+      deleteDoc(docToLike);
+    } else {
+      setDoc(docToLike, { userId, postId });
+    }
+  } catch (err) {
+    console.log(err);
   }
- 
-}
+};
 
+export const getLikesByUser = (userId, postId, setLiked, setLikesCount) => {
+  try {
+    let likeQuery = query(likeRef, where("postId", "==", postId));
 
-export const getLikeByUser = () => {
+    onSnapshot(likeQuery, (response) => {
+      let likes = response.docs.map((doc) => doc.data());
+      let likesCount = likes?.length;
 
-  
+      const isLiked = likes.some((like) => like.userId === userId);
 
-}
+      setLikesCount(likesCount);
+      setLiked(isLiked);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
