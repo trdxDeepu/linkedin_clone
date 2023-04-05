@@ -17,7 +17,7 @@ const Topbar = () => {
   const [popupVisible, setPopupVisible] = useState(false);
   let navigate = useNavigate();
 
-  const goTo = () => {
+  const goTo = (route) => {
     navigate(route);
   };
   const displayPopup = () => {

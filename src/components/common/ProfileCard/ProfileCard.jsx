@@ -3,6 +3,8 @@ import "./profilecard.scss";
 import PostCard from "../PostCard/PostCard";
 import { getSingleStatus, getSingleUser } from "../../../api/FirestoreApi";
 import { useLocation } from "react-router-dom";
+import { HiOutlinePencil } from "react-icons/hi";
+
 
 const ProfileCard = ({ currentUser, onEdit }) => {
  let location = useLocation()
@@ -26,7 +28,7 @@ const ProfileCard = ({ currentUser, onEdit }) => {
     <>
       <div className="profile-card">
         <div className="edit-btn">
-          <button onClick={onEdit}>Edit</button>
+        <HiOutlinePencil className="edit-icon" onClick={onEdit} />
         </div>
         <div className="profile-info">
           <div className="">
