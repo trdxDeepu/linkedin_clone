@@ -4,7 +4,11 @@ import './profilecard.scss'
 const ProfileCard = ({currentUser}) => {
   return (
     <div className='profile-card' >
-        <h1 className='name'>{currentUser.name}</h1>
+      <div className='edit-btn'>
+        <button>Edit</button>
+      </div>
+        <h3 className='username'>{currentUser.name}</h3>
+        <p className='useremail'>{currentUser.email}</p>
     </div>
   )
 }

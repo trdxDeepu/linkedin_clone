@@ -1,13 +1,40 @@
-.profile-card{
+.profile-card {
     width: auto;
     height: 50vh;
     background-color: whitesmoke;
     margin: 30px;
     border-radius: 5px;
-    .name
-    {
-        color: blue;
-        text-align: center;
-        
+    padding: 20px;
+    position: relative;
+
+    .edit-btn {
+        position: absolute;
+        right: 20px;
+
+        button {
+            cursor: pointer;
+            font-family: system-ui;
+
+        }
+
+    }
+
+    .username {
+        font-family: system-ui;
+        color: rgba(0, 0, 0, 0.9);
+        font-weight: 600;
+        font-size: 24px;
+
+
+    }
+
+    .useremail {
+        margin-top: -20px;
+        font-family: system-ui;
+        color: rgba(0, 0, 0, 0.9);
+
+        font-size: 16px;
+
+
     }
 }
