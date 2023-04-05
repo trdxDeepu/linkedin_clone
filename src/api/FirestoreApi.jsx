@@ -8,6 +8,7 @@ import {
   orderBy,
   updateDoc,
   doc,
+  where
 } from "firebase/firestore";
 
 const docRef = collection(db, "posts");
@@ -34,6 +35,30 @@ export const getStatus = (setAllStatus) => {
     );
   });
 };
+
+
+export const getSingleStatus = (setAllStatus, id) => {
+  const singlePostQuery = query(docRef, where("userID", "==", id));
+  onSnapshot(singlePostQuery, (response) => {
+    setAllStatus(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    );
+  });
+};
+
+export const getSingleUser = (setCurrentUser, email) => {
+  const singleUserQuery = query(useRef, where("email", "==", email));
+  onSnapshot(singleUserQuery, (response) => {
+    setCurrentUser(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })[0]
+    );
+  });
+};
+
 
 export const postUserData = (object) => {
   addDoc(useRef, object)
