@@ -1,66 +1,116 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { editProfile } from "../../../api/FirestoreApi";
 import "./profileedit.scss";
 
-const ProfileEdit = ({ onEdit }) => {
-
-    const [editInput,setEditInput] = useState({});
-
-  const getInput = (e) => {
-    let { name , value} = e.target
-    let input = {[name]:value};
-    setEditInput({...editInput,...input})
-
+export default function ProfileEdit({ onEdit, currentUser }) {
+  const [editInputs, setEditInputs] = useState(currentUser);
+  const getInput = (event) => {
+    let { name, value } = event.target;
+    let input = { [name]: value };
+    setEditInputs({ ...editInputs, ...input });
   };
-  console.log(editInput)
+
+  const updateProfileData = async () => {
+   let res =  await editProfile(currentUser?.id, editInputs);
+   console.log(res) 
+   await onEdit();
+  };
 
   return (
     <div className="profile-card">
       <div className="edit-btn">
-        <button onClick={onEdit}>Go back</button>
+        <AiOutlineClose className="close-icon" onClick={onEdit} size={25} />
       </div>
-      <div className="profileedit-input">
+
+      <div className="profile-edit-inputs">
+        <label>Name</label>
         <input
+          onChange={getInput}
           className="common-input"
-          type="text"
           placeholder="Name"
           name="name"
-          onChange={getInput}
+          value={editInputs.name}
         />
-
+        <label>Headline</label>
         <input
+          onChange={getInput}
           className="common-input"
-          type="text"
           placeholder="Headline"
+          value={editInputs.headline}
           name="headline"
-          onChange={getInput}
         />
-
+        <label>Country</label>
         <input
-          className="common-input"
-          type="text"
-          placeholder="Location"
-          name="location"
           onChange={getInput}
-        />
-
-        <input
           className="common-input"
-          type="text"
+          placeholder="Country"
+          name="country"
+          value={editInputs.country}
+        />
+        <label>City</label>
+        <input
+          onChange={getInput}
+          className="common-input"
+          placeholder="City"
+          name="city"
+          value={editInputs.city}
+        />
+        <label>Company</label>
+        <input
+          onChange={getInput}
+          className="common-input"
           placeholder="Company"
+          value={editInputs.company}
           name="company"
-          onChange={getInput}
         />
-
+        <label>Industry </label>
         <input
-          className="common-input"
-          type="text"
-          placeholder="college"
-          name="college"
           onChange={getInput}
+          className="common-input"
+          placeholder="Industry"
+          name="industry"
+          value={editInputs.industry}
         />
+        <label>College</label>
+        <input
+          onChange={getInput}
+          className="common-input"
+          placeholder="College"
+          name="college"
+          value={editInputs.college}
+        />
+        <label>Website</label>
+        <input
+          onChange={getInput}
+          className="common-input"
+          placeholder="Website"
+          name="website"
+          value={editInputs.website}
+        />
+        <label>About</label>
+        <textarea
+          placeholder="About Me"
+          className="common-textArea"
+          onChange={getInput}
+          rows={5}
+          name="aboutMe"
+          value={editInputs.aboutMe}
+        />
+        <label>Skills</label>
+        <input
+          onChange={getInput}
+          className="common-input"
+          placeholder="Skill"
+          name="skills"
+          value={editInputs.skills}
+        />
+      </div>
+      <div className="save-container">
+        <button className="save-btn" onClick={updateProfileData}>
+          Save
+        </button>
       </div>
     </div>
   );
-};
-
-export default ProfileEdit;
+}

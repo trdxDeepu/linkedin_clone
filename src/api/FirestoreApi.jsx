@@ -6,10 +6,13 @@ import {
   onSnapshot,
   query,
   orderBy,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 
 const docRef = collection(db, "posts");
-const useRef = collection(db, "users",);
+const useRef = collection(db, "users");
+// console.log(useRef)
 
 export const PostStatus = (object) => {
   addDoc(docRef, object)
@@ -32,12 +35,12 @@ export const getStatus = (setAllStatus) => {
   });
 };
 
-export const postUserData =(object) => {
+export const postUserData = (object) => {
   addDoc(useRef, object)
-  .then(() => {})
-  .catch((err) => {
-    console.log(err);
-  });
+    .then(() => {})
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const getCurrentUser = (setCurrentUser) => {
@@ -52,4 +55,16 @@ export const getCurrentUser = (setCurrentUser) => {
         })[0]
     );
   });
+};
+
+export const editProfile  = async (userID, payload) => {
+  const userToEdit = doc(useRef,userID);
+
+  try {
+    await updateDoc(userToEdit, payload);
+    console.log("Profile has been updated successfully");
+    toast.success("Profile has been updated successfully");
+  } catch (err) {
+    console.log(err);
+  }
 };

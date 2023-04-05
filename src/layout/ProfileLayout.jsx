@@ -13,7 +13,7 @@ const ProfileLayout = () => {
 
     },[])
 
-    console.log(currentUser)
+   
 
   return (
     <div>

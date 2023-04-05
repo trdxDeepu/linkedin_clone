@@ -13,6 +13,7 @@ const ProfileCard = ({ currentUser,onEdit }) => {
         </div>
         <h3 className="username">{currentUser.name}</h3>
         <p className="useremail">{currentUser.email}</p>
+
       </div>
     </>
   );
