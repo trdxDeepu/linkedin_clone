@@ -8,11 +8,15 @@ import {
   orderBy,
   updateDoc,
   doc,
-  where
+  where,
+  setDoc
 } from "firebase/firestore";
 
 const docRef = collection(db, "posts");
 const useRef = collection(db, "users");
+const likeRef = collection(db,"likes")
+
+
 // console.log(useRef)
 
 export const PostStatus = (object) => {
@@ -93,3 +97,26 @@ export const editProfile  = async (userID, payload) => {
     console.log(err);
   }
 };
+
+
+export const likePost = (userId,postId) => {
+  try {
+    
+    let doToLike  = doc(likeRef, `${userId}_${postId}`)
+    console.log(userId)
+    console.log(postId)
+    setDoc(doToLike,{userId,postId});
+   
+
+  } catch (error) {
+    console.log(error)
+  }
+ 
+}
+
+
+export const getLikeByUser = () => {
+
+  
+
+}

@@ -1,0 +1,12 @@
+.like-container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px;
+    p{
+        font-family: system-ui;
+        font-weight: 600;
+        color: rgba(0,0,0,0.9);
+        font-size: 14px;
+    }
+}
