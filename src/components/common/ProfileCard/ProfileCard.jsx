@@ -4,13 +4,14 @@ import PostCard from "../PostCard/PostCard";
 import { getSingleStatus, getSingleUser } from "../../../api/FirestoreApi";
 import { useLocation } from "react-router-dom";
 import { HiOutlinePencil } from "react-icons/hi";
-
+import { uploadImage } from "../../../api/ImageUpload";
 
 const ProfileCard = ({ currentUser, onEdit }) => {
  let location = useLocation()
 
   const [allStatus, setAllStatus] = useState([]);
   const [currentProfile, setCurrentProfile] = useState({});
+  const [currentImage , setCurrentImage] = useState({})
 
   useMemo(() => {
     if (location?.state?.id) {
@@ -23,10 +24,19 @@ const ProfileCard = ({ currentUser, onEdit }) => {
     }
   }, []);
 
+  const getImage = (e) =>{
+      setCurrentImage(e.target.files[0])
+  }
+
+  const uploadProfileApi = () => {
+    uploadImage(currentImage)
+  }
   console.log(currentProfile)
   return (
     <>
       <div className="profile-card">
+        <input type={"file"}  onChange={getImage} />
+        <button onClick={uploadProfileApi}>Upload </button>
         <div className="edit-btn">
         <HiOutlinePencil className="edit-icon" onClick={onEdit} />
         </div>

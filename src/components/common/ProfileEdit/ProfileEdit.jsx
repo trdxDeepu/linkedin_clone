@@ -19,6 +19,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
 
   return (
     <div className="profile-card">
+     
       <div className="edit-btn">
         <AiOutlineClose className="close-icon" onClick={onEdit} size={25} />
       </div>
