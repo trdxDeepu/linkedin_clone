@@ -139,3 +139,22 @@ export const postComment = (postId,comment,timeStamp) =>{
     console.log(error)
   }
 }
+
+export const GetCommentApi = (postId,setComments) => {
+
+  try {
+    let  singleCommentQuery = query(commentRef,where('postId',"==",postId))
+    onSnapshot(singleCommentQuery,(response)=>{
+      const comments = response.docs.map((doc)=>{
+        return{ 
+          id:doc.id,
+          ...doc.data(),}
+      })
+      setComments(comments)
+    })
+
+  } catch (error) { 
+    console.log(error)
+  }
+
+}

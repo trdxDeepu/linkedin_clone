@@ -11,6 +11,7 @@ import {
   likePost,
   getLikesByUser,
   postComment,
+  GetCommentApi
 } from "../../../api/FirestoreApi";
 import { getCurrentTimeStamp } from "../../../helper/useMoment";
 
@@ -38,6 +39,7 @@ const LikeButton = ({ userId, postId }) => {
 
   useMemo(() => {
     getLikesByUser(userId, postId, setLiked, setLikesCount);
+    GetCommentApi(postId,setComments)
   }, [userId, postId]);
 
   return (
