@@ -1,8 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import "./profilecard.scss";
 import PostCard from "../PostCard/PostCard";
-import { getSingleStatus, getSingleUser } from "../../../api/FirestoreApi";
-import { useLocation } from "react-router-dom";
+import { getSingleStatus, getSingleUser,editProfile } from "../../../api/FirestoreApi";
+import {  useLocation } from "react-router-dom";
 import { HiOutlinePencil } from "react-icons/hi";
 import { uploadImage } from "../../../api/ImageUpload";
 
@@ -12,24 +12,27 @@ const ProfileCard = ({ currentUser, onEdit }) => {
   const [allStatus, setAllStatus] = useState([]);
   const [currentProfile, setCurrentProfile] = useState({});
   const [currentImage , setCurrentImage] = useState({})
+  const [imageLink , setImageLink] = useState('')
 
   useMemo(() => {
     if (location?.state?.id) {
       console.log(location?.state?.id)
       getSingleStatus(setAllStatus, location?.state?.id);
     }
-
     if (location?.state?.email) {
       getSingleUser(setCurrentProfile, location?.state?.email);
     }
   }, []);
+
+
+
 
   const getImage = (e) =>{
       setCurrentImage(e.target.files[0])
   }
 
   const uploadProfileApi = () => {
-    uploadImage(currentImage)
+    uploadImage(currentImage,currentUser.id)
   }
   console.log(currentProfile)
   return (
@@ -42,6 +45,10 @@ const ProfileCard = ({ currentUser, onEdit }) => {
         </div>
         <div className="profile-info">
           <div className="">
+            
+            <img
+            className="profile-image" 
+            src={currentUser?.imageLink} alt="profilepic" />
           <h3 className="userName">
               {Object.values(currentProfile).length === 0
                 ? currentUser.name
