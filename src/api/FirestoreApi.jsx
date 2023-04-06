@@ -128,12 +128,13 @@ export const getLikesByUser = (userId, postId, setLiked, setLikesCount) => {
   }
 };
 
-export const postComment = (postId,comment,timeStamp) =>{
+export const postComment = (postId,comment,timeStamp,name) =>{
   try {
     addDoc(commentRef,{
       postId,
       comment,
-      timeStamp
+      timeStamp,
+      name
     })
   } catch (error) {
     console.log(error)

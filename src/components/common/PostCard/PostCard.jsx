@@ -2,19 +2,16 @@ import React, { useMemo, useState } from "react";
 import "./postcard.scss";
 import { useNavigate } from "react-router-dom";
 import LikeButton from "../LikeButton/LikeButton";
-import {getCurrentUser} from '../../../api/FirestoreApi'
+import { getCurrentUser } from "../../../api/FirestoreApi";
 
-
-const PostCard = ({ posts,id }) => {
+const PostCard = ({ posts, id }) => {
   let navigate = useNavigate();
-  
-  const [currentUser , setCurrentUser] = useState({})
- 
-  useMemo(()=>{
-    getCurrentUser(setCurrentUser)
-  },[])
 
+  const [currentUser, setCurrentUser] = useState({});
 
+  useMemo(() => {
+    getCurrentUser(setCurrentUser);
+  }, []);
 
   return (
     <div className="posts-card" key={id}>
@@ -30,9 +27,11 @@ const PostCard = ({ posts,id }) => {
       </p>
       <p className="timestamp">{posts.timeStamp}</p>
       <p className="status">{posts.status}</p>
-      <LikeButton userId={currentUser?.id}
+      <LikeButton
+        userId={currentUser?.id}
         postId={posts.id}
-        currentUser={currentUser} />
+        currentUser={currentUser}
+      />
     </div>
   );
 };

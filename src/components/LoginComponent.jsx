@@ -65,6 +65,7 @@ let navigate = useNavigate();
             value={email}
             id="email"
             onChange={handleChange}
+            
           />
           <input
             type="password"
@@ -73,6 +74,7 @@ let navigate = useNavigate();
             value={password}
             id="password"
             onChange={handleChange}
+           
           />
         </div>
         <button onClick={login} className="login-btn">

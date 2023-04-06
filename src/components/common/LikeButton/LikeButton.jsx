@@ -11,15 +11,14 @@ import {
   likePost,
   getLikesByUser,
   postComment,
-  GetCommentApi
+  GetCommentApi,
 } from "../../../api/FirestoreApi";
 import { getCurrentTimeStamp } from "../../../helper/useMoment";
 
-const LikeButton = ({ userId, postId }) => {
+const LikeButton = ({ userId, postId, currentUser }) => {
   const [likesCount, setLikesCount] = useState(0);
   const [liked, setLiked] = useState(false);
   const [showCommentBox, setShowCommentBox] = useState(false);
-
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
@@ -30,16 +29,15 @@ const LikeButton = ({ userId, postId }) => {
   const getComment = (event) => {
     setComment(event.target.value);
   };
-  console.log(liked);
 
   const addComment = () => {
-    postComment(postId, comment, getCurrentTimeStamp("LLL"));
+    postComment(postId, comment, getCurrentTimeStamp("LLL"), currentUser?.name);
     setComment("");
   };
 
   useMemo(() => {
     getLikesByUser(userId, postId, setLiked, setLikesCount);
-    GetCommentApi(postId,setComments)
+    GetCommentApi(postId, setComments);
   }, [userId, postId]);
 
   return (
@@ -91,11 +89,7 @@ const LikeButton = ({ userId, postId }) => {
                 <div className="all-comments">
                   <p className="name">{comment.name}</p>
                   <p className="comment">{comment.comment}</p>
-
                   <p className="timestamp">{comment.timeStamp}</p>
-                  {/* 
-                  <p>•</p>
-                   */}
                 </div>
               );
             })
