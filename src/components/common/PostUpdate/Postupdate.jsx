@@ -18,6 +18,7 @@ const Postupdate = ({ currentUser }) => {
       userEmail: currentUser.email,
       userName: currentUser.name,
       postID: getUniqueId(),
+      userID:currentUser.id,
     
     };
     await PostStatus(object);

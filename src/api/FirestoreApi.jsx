@@ -159,3 +159,13 @@ export const GetCommentApi = (postId,setComments) => {
   }
 
 }
+
+export const getAllUsers = (setAllUsers) => {
+  onSnapshot(useRef, (response) => {
+    setAllUsers(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    );
+  });
+};
