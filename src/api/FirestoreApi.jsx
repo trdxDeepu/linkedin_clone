@@ -16,6 +16,7 @@ import {
 const docRef = collection(db, "posts");
 const useRef = collection(db, "users");
 const likeRef = collection(db, "likes");
+const commentRef = collection(db,"comments")
 
 // console.log(useRef)
 
@@ -126,3 +127,15 @@ export const getLikesByUser = (userId, postId, setLiked, setLikesCount) => {
     console.log(err);
   }
 };
+
+export const postComment = (postId,comment,timeStamp) =>{
+  try {
+    addDoc(commentRef,{
+      postId,
+      comment,
+      timeStamp
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}

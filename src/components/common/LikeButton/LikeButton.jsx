@@ -7,7 +7,12 @@ import {
   AiOutlineComment,
 } from "react-icons/ai";
 import { BsFillHandThumbsUpFill, BsHandThumbsUp } from "react-icons/bs";
-import { likePost, getLikesByUser } from "../../../api/FirestoreApi";
+import {
+  likePost,
+  getLikesByUser,
+  postComment,
+} from "../../../api/FirestoreApi";
+import { getCurrentTimeStamp } from "../../../helper/useMoment";
 
 const LikeButton = ({ userId, postId }) => {
   const [likesCount, setLikesCount] = useState(0);
@@ -16,20 +21,20 @@ const LikeButton = ({ userId, postId }) => {
 
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
-  
+
   const handleLike = () => {
     likePost(userId, postId, liked);
   };
-  
+
   const getComment = (event) => {
     setComment(event.target.value);
   };
   console.log(liked);
 
-  const addComment = () =>{
-    
-  }
-
+  const addComment = () => {
+    postComment(postId, comment, getCurrentTimeStamp("LLL"));
+    setComment("");
+  };
 
   useMemo(() => {
     getLikesByUser(userId, postId, setLiked, setLikesCount);
