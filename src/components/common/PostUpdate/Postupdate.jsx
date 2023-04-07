@@ -1,6 +1,11 @@
 import React, { useState, useMemo } from "react";
 import "./postupdate.scss";
-import { PostStatus, getStatus,updatePost,deletePost } from "../../../api/FirestoreApi";
+import {
+  PostStatus,
+  getStatus,
+  updatePost,
+  deletePost,
+} from "../../../api/FirestoreApi";
 import PostModal from "../Modal/PostModal";
 import PostCard from "../PostCard/PostCard";
 import { getCurrentTimeStamp } from "../../../helper/useMoment";
@@ -25,7 +30,7 @@ const Postupdate = ({ currentUser }) => {
     await PostStatus(object);
     await setModalOpen(false);
     await setStatus("");
-    setItEdit(false)
+    setItEdit(false);
   };
 
   const getEditData = (posts) => {
@@ -38,7 +43,7 @@ const Postupdate = ({ currentUser }) => {
   const updateStatus = () => {
     updatePost(currentPost.id, status);
     setModalOpen(false);
-    console.log(status)
+    console.log(status);
   };
 
   useMemo(() => {
@@ -49,7 +54,17 @@ const Postupdate = ({ currentUser }) => {
 
   return (
     <div className="post-status-main">
+      <div className="user-details">
+        <img src={currentUser?.imageLink} alt="imageLink" />
+        <p className="name">{currentUser?.name}</p>
+        <p className="headline">{currentUser?.headline}</p>
+      </div>
       <div className="post-status">
+        <img
+          className="post-image"
+          src={currentUser?.imageLink}
+          alt="imageLink"
+        />
         <button
           className="open-post-modal"
           onClick={() => {
