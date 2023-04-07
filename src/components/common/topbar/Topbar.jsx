@@ -37,7 +37,10 @@ const Topbar = () => {
         <></>
       )}
       |
-      <img src={Linkedin} alt="logo" className="linkedin-logo" />
+      <img src={Linkedin} alt="logo" 
+      className="linkedin-logo" 
+      onClick={() => goTo("/")}
+      />
       {isSearch ? (
         (<SearchUser 
           setIsSearch={setIsSearch}
