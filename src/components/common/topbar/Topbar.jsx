@@ -40,7 +40,8 @@ const Topbar = () => {
           className="react-icons"
           onClick={() => goTo("/")}
         />
-        <AiOutlineUserSwitch size={30} className="react-icons" />
+        <AiOutlineUserSwitch size={30} className="react-icons"
+        onClick={()=>goTo("/connection")} />
         <BsBriefcase size={30} className="react-icons" />
         <AiOutlineMessage size={30} className="react-icons" />
         <AiOutlineBell size={30} className="react-icons" />

@@ -16,11 +16,8 @@ const PostCard = ({ posts, id,getEditData }) => {
     getAllUsers(setAllUser);
   }, []);
 
-  // console.log(
-  //   allUser.filter((i) => i.id === posts.userID).map((i) => i.imageLink)[0]
-  // );
 
-  
+  console.log(allUser.filter((user)=>user.id === posts.userID)[0].name )
 
 
   return (
@@ -62,9 +59,10 @@ const PostCard = ({ posts, id,getEditData }) => {
           })
         }
       >
-        {posts.userName}
+        {allUser.filter((user)=>user.id === posts.userID)[0].name}
       </p>
-      <p className="timestamp">{posts.timeStamp}</p>
+      <p className="headline">{allUser.filter((user)=>user.id === posts.userID)[0].headline}</p>
+      <p className="headline">{allUser.filter((user)=>user.id === posts.userID)[0].timeStamp}</p>
       <p className="status">{posts.status}</p>
       <LikeButton
         userId={currentUser?.id}
