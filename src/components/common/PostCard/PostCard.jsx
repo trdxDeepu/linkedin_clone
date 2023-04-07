@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import "./postcard.scss";
 import { useNavigate } from "react-router-dom";
 import LikeButton from "../LikeButton/LikeButton";
-import { getAllUsers, getCurrentUser } from "../../../api/FirestoreApi";
+import { getAllUsers, getCurrentUser ,deletePost} from "../../../api/FirestoreApi";
 import { BsPencil, BsTrash } from "react-icons/bs";
 
 const PostCard = ({ posts, id,getEditData }) => {

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import "./postupdate.scss";
-import { PostStatus, getStatus,updatePost } from "../../../api/FirestoreApi";
+import { PostStatus, getStatus,updatePost,deletePost } from "../../../api/FirestoreApi";
 import PostModal from "../Modal/PostModal";
 import PostCard from "../PostCard/PostCard";
 import { getCurrentTimeStamp } from "../../../helper/useMoment";

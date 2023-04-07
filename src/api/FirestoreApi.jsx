@@ -179,3 +179,13 @@ export const updatePost = (id, status, postImage) => {
     console.log(err);
   }
 };
+
+export const deletePost = (id) => {
+  let docToDelete = doc(docRef, id);
+  try {
+    deleteDoc(docToDelete);
+    toast.success("Post has been Deleted!");
+  } catch (err) {
+    console.log(err);
+  }
+};
