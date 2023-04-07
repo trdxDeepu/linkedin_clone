@@ -26,11 +26,12 @@ const Postupdate = ({ currentUser }) => {
       userName: currentUser.name,
       postID: getUniqueId(),
       userID: currentUser.id,
+      postImage: postImage,
     };
     await PostStatus(object);
     await setModalOpen(false);
-    await setStatus("");
     setItEdit(false);
+    await setStatus("");
   };
 
   const getEditData = (posts) => {
@@ -41,9 +42,8 @@ const Postupdate = ({ currentUser }) => {
   };
 
   const updateStatus = () => {
-    updatePost(currentPost.id, status);
+    updatePost(currentPost.id, status, postImage);
     setModalOpen(false);
-    console.log(status);
   };
 
   useMemo(() => {
@@ -87,6 +87,7 @@ const Postupdate = ({ currentUser }) => {
         uploadPostImage={uploadPostImage}
         setPostImage={setPostImage}
         postImage={postImage}
+        setCurrentPost={setCurrentPost}
       />
       <div>
         {allStatus.map((post) => {

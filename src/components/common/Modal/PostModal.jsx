@@ -34,7 +34,6 @@ const PostModal = ({
         onCancel={() => {
           setStatus("");
           setModalOpen(false);
-
           setCurrentPost({});
         }}
         footer={[
