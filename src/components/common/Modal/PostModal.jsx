@@ -1,5 +1,7 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, Progress } from "antd";
+import { AiOutlinePicture } from "react-icons/ai";
 import "./postmodal.scss";
+import { useState } from "react";
 
 const PostModal = ({
   modalopen,
@@ -10,13 +12,15 @@ const PostModal = ({
   setCurrentPost,
   isEdit,
   updateStatus,
-
+  setPostImage,
+  uploadPostImage,
+  currentPost,
+  postImage,
 }) => {
+  const [progress, setProgress] = useState(0);
+
   return (
     <>
-      {/* <Button type="primary" onClick={() => setModalOpen(true)}>
-        Vertically centered modal dialog
-      </Button> */}
       <Modal
         title="Create a Post"
         centered
@@ -44,16 +48,47 @@ const PostModal = ({
           </Button>,
         ]}
       >
-        <input
+        <textarea
           type="text"
+          rows={3}
+          cols={3}
           className="modal-input"
           placeholder="What do u want to talk about?"
           value={status}
           onChange={(event) => setStatus(event.target.value)}
         />
+        <div className="posts-body">
+        
+          {progress === 0 || progress === 100 ? (
+            <></>
+          ) : (
+            <div className="progress-bar">
+              <Progress type="circle" percent={progress} />
+            </div>
+          )}
+          {postImage?.length > 0 || currentPost?.postImage?.length ? (
+            <img
+              className="preview-image"
+              src={postImage || currentPost?.postImage}
+              alt="postImage"
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+        <label for="pic-upload">
+          <AiOutlinePicture size={35} className="picture-icon" />
+        </label>
+        <input
+          id="pic-upload"
+          type={"file"}
+          hidden
+          onChange={(event) =>
+            uploadPostImage(event.target.files[0], setPostImage, setProgress)
+          }
+        />
       </Modal>
     </>
   );
 };
-
 export default PostModal;

@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from "react";
 import "./postupdate.scss";
+import { uploadPostImage } from "../../../api/ImageUpload";
 import { PostStatus, getStatus, updatePost } from "../../../api/FirestoreApi";
 import PostModal from "../Modal/PostModal";
-import PostCard from '../PostCard/PostCard'
+import PostCard from "../PostCard/PostCard";
 import { getCurrentTimeStamp } from "../../../helper/useMoment";
 import { getUniqueId } from "../../../helper/getUniqueId";
 
@@ -12,6 +13,10 @@ const Postupdate = ({ currentUser }) => {
   const [allStatus, setAllStatus] = useState([]);
   const [isEdit, setItEdit] = useState(false);
   const [currentPost, setCurrentPost] = useState({});
+  const [currentImage, setCurrentImage] = useState({});
+  const [postImage, setPostImage] = useState("");
+
+  console.log(currentImage);
 
   const sendStatus = async () => {
     let object = {
@@ -79,6 +84,9 @@ const Postupdate = ({ currentUser }) => {
         isEdit={isEdit}
         updateStatus={updateStatus}
         currentPost={currentPost}
+        uploadPostImage={uploadPostImage}
+        setPostImage={setPostImage}
+        postImage={postImage}
       />
       <div>
         {allStatus.map((post) => {

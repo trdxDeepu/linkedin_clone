@@ -7,7 +7,8 @@ export const uploadImage = (
   id,
   setModalOpen,
   setProgress,
-  setCurrentImage
+  setCurrentImage,
+  
 ) => {
   const profilePicsRef = ref(storage, `profileImages/${file.name}`);
   const uploadTask = uploadBytesResumable(profilePicsRef, file);
@@ -30,6 +31,30 @@ export const uploadImage = (
         setModalOpen(false);
         setCurrentImage({});
         setProgress(0);
+      });
+    }
+  );
+};
+
+export const uploadPostImage = (file, setPostImage, setProgress) => {
+  const postPicsRef = ref(storage, `postImages/${file.name}`);
+  const uploadTask = uploadBytesResumable(postPicsRef, file);
+
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {
+      const progress = Math.round(
+        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      );
+
+      setProgress(progress);
+    },
+    (error) => {
+      setProgress(err);
+    },
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((response) => {
+        setPostImage(response);
       });
     }
   );
