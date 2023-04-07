@@ -31,7 +31,7 @@ const Postupdate = ({ currentUser }) => {
   const getEditData = (posts) => {
     setModalOpen(true);
     setStatus(posts?.status);
-    setCurrentPost(posts);
+    // setCurrentPost(posts);
     setItEdit(true);
   };
 
