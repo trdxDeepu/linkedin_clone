@@ -48,6 +48,15 @@ const Topbar = () => {
     }
   };
 
+  const openUser = (user) => {
+    navigate("/profile", {
+      state: {
+        id: user.id,
+        email: user.email,
+      },
+    });
+  };
+
   useEffect(() => {
     let debounced = setTimeout(() => {
       handleSearch();
