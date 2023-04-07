@@ -10,13 +10,14 @@ import {
   doc,
   where,
   setDoc,
-  deleteDoc
+  deleteDoc,
 } from "firebase/firestore";
 
 const docRef = collection(db, "posts");
 const useRef = collection(db, "users");
 const likeRef = collection(db, "likes");
-const commentRef = collection(db,"comments")
+const commentRef = collection(db, "comments");
+const connectionRef = collection(db, "connections");
 
 // console.log(useRef)
 
@@ -128,37 +129,35 @@ export const getLikesByUser = (userId, postId, setLiked, setLikesCount) => {
   }
 };
 
-export const postComment = (postId,comment,timeStamp,name) =>{
+export const postComment = (postId, comment, timeStamp, name) => {
   try {
-    addDoc(commentRef,{
+    addDoc(commentRef, {
       postId,
       comment,
       timeStamp,
-      name
-    })
+      name,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-export const GetCommentApi = (postId,setComments) => {
-
+export const GetCommentApi = (postId, setComments) => {
   try {
-    let  singleCommentQuery = query(commentRef,where('postId',"==",postId))
-    onSnapshot(singleCommentQuery,(response)=>{
-      const comments = response.docs.map((doc)=>{
-        return{ 
-          id:doc.id,
-          ...doc.data(),}
-      })
-      setComments(comments)
-    })
-
-  } catch (error) { 
-    console.log(error)
+    let singleCommentQuery = query(commentRef, where("postId", "==", postId));
+    onSnapshot(singleCommentQuery, (response) => {
+      const comments = response.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      setComments(comments);
+    });
+  } catch (error) {
+    console.log(error);
   }
-
-}
+};
 
 export const getAllUsers = (setAllUsers) => {
   onSnapshot(useRef, (response) => {
@@ -185,6 +184,33 @@ export const deletePost = (id) => {
   try {
     deleteDoc(docToDelete);
     toast.success("Post has been Deleted!");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const addConnection = (userId, targetId, liked) => {
+  try {
+    let connectionToAdd = doc(connectionRef, `${userId}_${targetId}`);
+    setDoc(connectionToAdd, { userId, targetId });
+    toast.success("Connection added ");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+export const getConnections = (userId, targetId,setIsConnected) => {
+  try {
+    let connectionQuery = query(connectionRef, where("targetId", "==", targetId));
+
+    onSnapshot(connectionQuery, (response) => {
+      let connections = response.docs.map((doc) => doc.data());
+     
+
+      const isconnected= connections.some((connection) => connection.userId === userId);
+      setIsConnected(isconnected)
+    });
   } catch (err) {
     console.log(err);
   }

@@ -12,7 +12,7 @@ const HomeLayout = () => {
     getCurrentUser(setCurrentUser)
   },[])
 
-  console.log(currentUser)
+  // console.log(currentUser)
 
   return (
     <div>
