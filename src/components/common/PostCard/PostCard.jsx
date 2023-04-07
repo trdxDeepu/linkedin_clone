@@ -26,7 +26,8 @@ const PostCard = ({ posts, id,getEditData }) => {
   return (
     <div className="posts-card" key={id}>
       <div className="post-image-wrapper">
-      <div className="action-container">
+      {currentUser.id === posts.userID ? (
+          <div className="action-container">
             <BsPencil
               size={20}
               className="action-icon"
@@ -38,6 +39,9 @@ const PostCard = ({ posts, id,getEditData }) => {
               onClick={() => deletePost(posts.id)}
             />
           </div>
+        ) : (
+          <></>
+        )}
       <img
       alt='profile-image'
       className="profile-image"
