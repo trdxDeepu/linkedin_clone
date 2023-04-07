@@ -170,5 +170,12 @@ export const getAllUsers = (setAllUsers) => {
   });
 };
 
-
-expor
+export const updatePost = (id, status, postImage) => {
+  let docToUpdate = doc(docRef, id);
+  try {
+    updateDoc(docToUpdate, { status });
+    toast.success("Post has been updated!");
+  } catch (err) {
+    console.log(err);
+  }
+};

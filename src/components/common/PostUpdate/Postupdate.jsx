@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import "./postupdate.scss";
-import { PostStatus, getStatus } from "../../../api/FirestoreApi";
+import { PostStatus, getStatus,updatePost } from "../../../api/FirestoreApi";
 import PostModal from "../Modal/PostModal";
 import PostCard from "../PostCard/PostCard";
 import { getCurrentTimeStamp } from "../../../helper/useMoment";
@@ -31,12 +31,12 @@ const Postupdate = ({ currentUser }) => {
   const getEditData = (posts) => {
     setModalOpen(true);
     setStatus(posts?.status);
-    // setCurrentPost(posts);
+    setCurrentPost(posts);
     setItEdit(true);
   };
 
   const updateStatus = () => {
-    updatePost(currentPost.id, status, postImage);
+    updatePost(currentPost.id, status);
     setModalOpen(false);
     console.log(status)
   };
