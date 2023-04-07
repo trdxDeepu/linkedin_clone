@@ -1,0 +1,17 @@
+.connection-min{
+    display: grid;
+    grid-template: auto auto;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 0px;
+    .grid-child{
+        border: 1px solid #212121;
+        width: 300px;
+        height: 100px;
+        margin: 10px;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+}

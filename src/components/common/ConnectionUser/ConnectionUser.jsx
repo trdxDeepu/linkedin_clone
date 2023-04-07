@@ -1,8 +1,12 @@
 import React from 'react'
 
-const ConnectionUser = () => {
+const ConnectionUser = ({user,getCurrentUser}) => {
   return (
-    <div>ConnectionUser</div>
+    <div className='grid-child' onClick={()=>getCurrentUser(user.id)}>
+        <p className="name">{user.name}</p>
+        <p className="headline">{user.headline}</p>
+
+    </div>
   )
 }
 
