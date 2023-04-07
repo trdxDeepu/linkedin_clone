@@ -46,25 +46,25 @@ const Topbar = () => {
           setIsSearch={setIsSearch}
           setSearchInput={setSearchInput}/>)
       ) : (
-        <div className="topbar-icons">
+        <div className="react-icons">
           <AiOutlineSearch
             size={25}
-            className="react-icons"
+            className="react-icon"
             onClick={() => setIsSearch(true)}
           />
           <AiOutlineHome
             size={30}
-            className="react-icons"
+            className="react-icon"
             onClick={() => goTo("/")}
           />
           <AiOutlineUserSwitch
             size={30}
-            className="react-icons"
+            className="react-icon"
             onClick={() => goTo("/connection")}
           />
-          <BsBriefcase size={30} className="react-icons" />
-          <AiOutlineMessage size={30} className="react-icons" />
-          <AiOutlineBell size={30} className="react-icons" />
+          <BsBriefcase size={30} className="react-icon" />
+          <AiOutlineMessage size={30} className="react-icon" />
+          <AiOutlineBell size={30} className="react-icon" />
         </div>
       )}
       <img
