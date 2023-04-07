@@ -10,6 +10,8 @@ const Postupdate = ({ currentUser }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatus, setAllStatus] = useState([]);
+  const [isEdit, setItEdit] = useState(false);
+  const [currentPost, setCurrentPost] = useState({});
 
   const sendStatus = async () => {
     let object = {
@@ -18,12 +20,25 @@ const Postupdate = ({ currentUser }) => {
       userEmail: currentUser.email,
       userName: currentUser.name,
       postID: getUniqueId(),
-      userID:currentUser.id,
-    
+      userID: currentUser.id,
     };
     await PostStatus(object);
     await setModalOpen(false);
     await setStatus("");
+    setItEdit(false)
+  };
+
+  const getEditData = (posts) => {
+    setModalOpen(true);
+    setStatus(posts?.status);
+    setCurrentPost(posts);
+    setItEdit(true);
+  };
+
+  const updateStatus = () => {
+    updatePost(currentPost.id, status, postImage);
+    setModalOpen(false);
+    console.log(status)
   };
 
   useMemo(() => {
@@ -35,7 +50,13 @@ const Postupdate = ({ currentUser }) => {
   return (
     <div className="post-status-main">
       <div className="post-status">
-        <button className="open-post-modal" onClick={() => setModalOpen(true)}>
+        <button
+          className="open-post-modal"
+          onClick={() => {
+            setModalOpen(true);
+            setItEdit(false);
+          }}
+        >
           Start a post
         </button>
       </div>
@@ -45,14 +66,17 @@ const Postupdate = ({ currentUser }) => {
         modalopen={modalOpen}
         setModalOpen={setModalOpen}
         sendStatus={sendStatus}
+        isEdit={isEdit}
+        updateStatus={updateStatus}
+        currentPost={currentPost}
       />
       <div>
         {allStatus.map((post) => {
-          return(
+          return (
             <div key={post.id}>
-              <PostCard posts={post} />
+              <PostCard posts={post} getEditData={getEditData} />
             </div>
-            )
+          );
         })}
       </div>
     </div>

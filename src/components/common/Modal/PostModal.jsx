@@ -1,8 +1,17 @@
-
 import { Button, Modal } from "antd";
 import "./postmodal.scss";
 
-const PostModal = ({ modalopen, setModalOpen, setStatus, status, sendStatus }) => {
+const PostModal = ({
+  modalopen,
+  setModalOpen,
+  setStatus,
+  status,
+  sendStatus,
+  setCurrentPost,
+  isEdit,
+  updateStatus,
+
+}) => {
   return (
     <>
       {/* <Button type="primary" onClick={() => setModalOpen(true)}>
@@ -12,16 +21,26 @@ const PostModal = ({ modalopen, setModalOpen, setStatus, status, sendStatus }) =
         title="Create a Post"
         centered
         open={modalopen}
-        onOk={() => setModalOpen(false)}
-        onCancel={() => setModalOpen(false)}
+        onOk={() => {
+          setStatus("");
+          setModalOpen(false);
+          //
+          setCurrentPost({});
+        }}
+        onCancel={() => {
+          setStatus("");
+          setModalOpen(false);
+
+          setCurrentPost({});
+        }}
         footer={[
           <Button
             key="submit"
+            onClick={isEdit ? updateStatus : sendStatus}
             type="primary"
             disabled={status.length > 0 ? false : true}
-            onClick={sendStatus}
           >
-            Post
+            {isEdit ? "Update" : "Post"}
           </Button>,
         ]}
       >

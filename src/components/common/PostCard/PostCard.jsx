@@ -3,8 +3,9 @@ import "./postcard.scss";
 import { useNavigate } from "react-router-dom";
 import LikeButton from "../LikeButton/LikeButton";
 import { getAllUsers, getCurrentUser } from "../../../api/FirestoreApi";
+import { BsPencil, BsTrash } from "react-icons/bs";
 
-const PostCard = ({ posts, id }) => {
+const PostCard = ({ posts, id,getEditData }) => {
   let navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState({});
@@ -15,13 +16,28 @@ const PostCard = ({ posts, id }) => {
     getAllUsers(setAllUser);
   }, []);
 
-  console.log(
-    allUser.filter((i) => i.id === posts.userID).map((i) => i.imageLink)[0]
-  );
+  // console.log(
+  //   allUser.filter((i) => i.id === posts.userID).map((i) => i.imageLink)[0]
+  // );
+
+  
+
 
   return (
     <div className="posts-card" key={id}>
       <div className="post-image-wrapper">
+      <div className="action-container">
+            <BsPencil
+              size={20}
+              className="action-icon"
+              onClick={() => getEditData(posts)}
+            />
+            <BsTrash
+              size={20}
+              className="action-icon"
+              onClick={() => deletePost(posts.id)}
+            />
+          </div>
       <img
       alt='profile-image'
       className="profile-image"
