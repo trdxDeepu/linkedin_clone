@@ -47,6 +47,7 @@ const PostModal = ({
           </Button>,
         ]}
       >
+        <div className="posts-body">
         <textarea
           type="text"
           rows={3}
@@ -56,7 +57,6 @@ const PostModal = ({
           value={status}
           onChange={(event) => setStatus(event.target.value)}
         />
-        <div className="posts-body">
         
           {progress === 0 || progress === 100 ? (
             <></>
