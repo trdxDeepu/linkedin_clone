@@ -2,6 +2,7 @@ import { Button, Modal, Progress } from "antd";
 import { AiOutlinePicture } from "react-icons/ai";
 import "./postmodal.scss";
 import { useState } from "react";
+import ReactQuill from 'react-quill';
 
 const PostModal = ({
   modalopen,
