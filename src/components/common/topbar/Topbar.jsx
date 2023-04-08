@@ -16,7 +16,7 @@ import ProfilePopup from "../ProfilePop/ProfilePop";
 import { getAllUsers } from "../../../api/FirestoreApi";
 
 
-const Topbar = () => {
+const Topbar = ({currentUser}) => {
   const [popupVisible, setPopupVisible] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -110,7 +110,7 @@ const Topbar = () => {
         </div>
       )}
       <img
-        src={User}
+        src={currentUser.imageLink}
         alt="userIcon"
         className="user-logo"
         onClick={displayPopup}
