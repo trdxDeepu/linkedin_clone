@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { RegisterApi, LoginApi, googleApi } from "../api/AuthApi";
+import {  LoginApi, googleApi } from "../api/AuthApi";
 import "../sass/LoginComponent.scss";
-import Logo from "../assets/linkedin-logo.png";
+import download from "../assets/linkedin-logo.png"
 import GoogleButton from "react-google-button";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -50,14 +50,14 @@ let navigate = useNavigate();
 
   return (
     <div className="login-wrapper">
-      <img src={Logo} alt="logo" className="linkedin-logo" />
+      <img src={download} alt="logo" className="linkedinLogo" />
       <div className="login-wrapper-inner">
         <h1 className="heading">Sign in</h1>
-        <p className="sub-heading">
+        <p className="sub-heading ">
           Stay up to date on your professional world
         </p>
 
-        <div className="auth-input">
+        <div className="auth-inputs">
           <input
             type="email"
             placeholder="Email or Phone"
