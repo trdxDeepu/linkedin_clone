@@ -2,7 +2,7 @@ import { Button, Modal, Progress } from "antd";
 import { AiOutlinePicture } from "react-icons/ai";
 import "./postmodal.scss";
 import { useState } from "react";
-import ReactQuill from 'react-quill';
+import ReactQuill from "react-quill";
 
 const PostModal = ({
   modalopen,
@@ -49,16 +49,14 @@ const PostModal = ({
         ]}
       >
         <div className="posts-body">
-        <textarea
-          type="text"
-          rows={3}
-          cols={3}
-          className="modal-input"
-          placeholder="What do u want to talk about?"
-          value={status}
-          onChange={(event) => setStatus(event.target.value)}
-        />
-        
+          <ReactQuill
+            className="modal-input"
+            placeholder="Share something useful..."
+            theme="snow"
+            value={status}
+            onChange={setStatus}
+          />
+
           {progress === 0 || progress === 100 ? (
             <></>
           ) : (
